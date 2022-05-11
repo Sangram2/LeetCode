@@ -2,6 +2,7 @@ class Solution {
     public class pair{
         int val;
         int color;
+        pair(){};
         pair(int val,int color){
             this.val=val;
             this.color=color; //0-->red <--> 1-->blue 
