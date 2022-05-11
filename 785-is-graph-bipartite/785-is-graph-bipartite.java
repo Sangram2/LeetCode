@@ -26,12 +26,13 @@ class Solution {
             vis[rem.val]=rem.color;
             for(int nbr : graph[rem.val]){
                 if(vis[nbr]==-1){
-                    if(rem.color==0){
-                        qu.add(new pair(nbr,1));
-                    }
-                    else{
-                        qu.add(new pair(nbr,0));
-                    }
+                    // if(rem.color==0){
+                    //     qu.add(new pair(nbr,1));
+                    // }
+                    // else{
+                    //     qu.add(new pair(nbr,0));
+                    // }
+                    qu.add(new pair(nbr,1-rem.color));
                 }
             }
             
