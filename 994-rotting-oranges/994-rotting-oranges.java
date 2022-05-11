@@ -1,5 +1,5 @@
 class Solution {
-    static int[][] dir= {{1,0},{0,-1},{-1,0},{0,1}};
+    public int[][] dir= {{1,0},{0,-1},{-1,0},{0,1}};
     public class pair{
         int x;
         int y;
