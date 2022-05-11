@@ -42,10 +42,10 @@ class Solution {
         int n=graph.length;
         int []vis=new int[n];
         
-        
-        for(int i=0;i<n;i++){
-            vis[i]=-1;
-        }
+        Arrays.fill(vis,-1);
+        // for(int i=0;i<n;i++){
+        //     vis[i]=-1;
+        // }
         
         for(int i=0;i<n;i++){
             boolean ans=solve(graph,vis,i);
