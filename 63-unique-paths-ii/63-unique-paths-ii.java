@@ -30,8 +30,7 @@ class Solution {
             
         }
         
-        return count(0,0,m-1,n-1,obstacleGrid,dp);
-        
+        return count(0,0,m-1,n-1,obstacleGrid,dp);   
     }
 }
 
