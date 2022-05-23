@@ -4,7 +4,7 @@ class Solution {
         if(sr==dr && sc== dc){
             return dp[sr][sc]=1;
         }
-        if(dp[sr][sc]!=-1){
+        if(dp[sr][sc]!=0){
             return dp[sr][sc];
         }
         int c=0;
@@ -18,9 +18,7 @@ class Solution {
     }
     public int uniquePaths(int m, int n) {
         int [][] dp=new int[m][n];
-        for(int[] arr:dp){
-            Arrays.fill(arr,-1);
-        }
+        
         return count(0,0,m-1,n-1,dp);
     }
 }
