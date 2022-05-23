@@ -1,5 +1,7 @@
 class Solution {
     
+    public int[][]dir= {{1,0},{0,1}};
+    
     public int count(int sr,int sc,int dr,int dc,int[][]dp){
         if(sr==dr && sc== dc){
             return dp[sr][sc]=1;
@@ -7,12 +9,15 @@ class Solution {
         if(dp[sr][sc]!=0){
             return dp[sr][sc];
         }
-        int c=0;
-        if(sr+1<=dr)
-            c+=count(sr+1,sc,dr,dc,dp);
-        if(sc+1<=dc)
-            c+=count(sr,sc+1,dr,dc,dp);
-        return dp[sr][sc]=c;
+        int a=0;
+        for(int i=0;i<dir.length;i++){
+            int r=sr+dir[i][0];
+            int c= sc+dir[i][1];
+            if(r<=dr && c<=dc){
+                a+=count(r,c,dr,dc,dp);
+            }
+        }
+        return dp[sr][sc]=a;
         
         
     }
