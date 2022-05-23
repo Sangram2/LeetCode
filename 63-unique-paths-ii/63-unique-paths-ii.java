@@ -2,7 +2,7 @@ class Solution {
     
     public int[][]dir= {{1,0},{0,1}};
      public int count(int sr,int sc,int dr,int dc,int[][] obstacleGrid,int[][]dp){
-        if(sr==dr && sc== dc && obstacleGrid[sr][sc]==0){
+        if(sr==dr && sc== dc){
             return dp[sr][sc]=1;
         }
         if(dp[sr][sc]!=0){
