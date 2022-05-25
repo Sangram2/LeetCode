@@ -15,6 +15,8 @@
  */
 class Solution {
     
+    //Method 1
+    
 //     static int count = 0;
     
 //     public int findSize(TreeNode root){
@@ -57,7 +59,7 @@ class Solution {
     
     
     
-    
+    //Method 2
     public class pair{
         int size;
         int sum;
