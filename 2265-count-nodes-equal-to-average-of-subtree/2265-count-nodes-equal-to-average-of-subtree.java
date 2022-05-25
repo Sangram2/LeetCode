@@ -15,43 +15,96 @@
  */
 class Solution {
     
-    static int count = 0;
+//     static int count = 0;
     
-    public int findSize(TreeNode root){
-        if(root==null){
-            return 0;
-        }
-        int leftSize = findSize(root.left);
-        int rightSize = findSize(root.right);
-        return leftSize+rightSize+1;
-    }
+//     public int findSize(TreeNode root){
+//         if(root==null){
+//             return 0;
+//         }
+//         int leftSize = findSize(root.left);
+//         int rightSize = findSize(root.right);
+//         return leftSize+rightSize+1;
+//     }
     
-    public int findSum(TreeNode root){
-        if(root==null){
-            return 0;
+//     public int findSum(TreeNode root){
+//         if(root==null){
+//             return 0;
+//         }
+//         int leftSum = findSum(root.left);
+//         int rightSum = findSum(root.right);
+//         return leftSum+rightSum+root.val;
+//     }
+//     public void findAns(TreeNode root){
+//         if(root==null){
+//             return;
+//         }
+        
+//         int val = root.val;
+//         int size = findSize(root);
+//         int sum = findSum(root);
+//         int avg = sum/size;
+//         if(avg==val){
+//             count++;
+//         }
+//         findAns(root.left);
+//         findAns(root.right);
+//     }
+//     public int averageOfSubtree(TreeNode root){
+//         count = 0; 
+//         findAns(root);
+//         return count;
+//     }
+    
+    
+    
+    
+    public class pair{
+        int size;
+        int sum;
+        TreeNode node;
+        
+        pair(int size,int sum,TreeNode node){
+            this.size = size;
+            this.sum = sum;
+            this.node = node;
         }
-        int leftSum = findSum(root.left);
-        int rightSum = findSum(root.right);
-        return leftSum+rightSum+root.val;
     }
-    public void findAns(TreeNode root){
+        
+    
+    
+    public pair helper(TreeNode root,ArrayList<pair> store){
         if(root==null){
-            return;
+            return new pair(0,0,null);
         }
         
-        int val = root.val;
-        int size = findSize(root);
-        int sum = findSum(root);
-        int avg = sum/size;
-        if(avg==val){
-            count++;
-        }
-        findAns(root.left);
-        findAns(root.right);
+        pair left = helper(root.left,store);
+        pair right = helper(root.right,store);
+        
+        int MySize = left.size + right.size + 1;
+        int MySum = left.sum + right.sum + root.val;
+        
+        store.add(new pair(MySize,MySum,root));
+        
+        return new pair(MySize,MySum,root);
     }
+        
+        
     public int averageOfSubtree(TreeNode root){
-        count = 0; 
-        findAns(root);
-        return count;
+        ArrayList<pair> store = new ArrayList<>();
+        helper(root,store);
+        int ans=0;
+        
+        for(int i=0;i<store.size();i++){
+            pair curr = store.get(i);
+            int val = curr.node.val;
+            int size = curr.size;
+            int sum = curr.sum;
+            int avg = sum/size;
+            if(avg==val){
+                ans++;
+            }
+        }
+        return ans;
+        
     }
 }
