@@ -121,42 +121,70 @@ class Node{
         right=null;
     }
 }*/
-class Tree
-{   
-    //static int lc=0;
-    public void fillTheHashMap(Node root,HashMap<Integer,ArrayList<Integer>> hm,int diag){
-        //lc=Math.max(lc,diag);
-        if(hm.containsKey(diag) == false){
-                hm.put(diag, new ArrayList<>());
-                hm.get(diag).add(root.data);
-            } else {
-                hm.get(diag).add(root.data); 
-            }
-            
-            if(root.left!=null){
-                fillTheHashMap(root.left,hm,diag+1);
-            }
-            if(root.right!=null){
-                fillTheHashMap(root.right,hm,diag);
-            }
-    }
-     public ArrayList<Integer> diagonal(Node root)
-      {
-       HashMap<Integer,ArrayList<Integer>> hm = new HashMap<>();
-       //lc=0;
-       
-       fillTheHashMap(root,hm,0);
 
-        ArrayList<Integer> res = new ArrayList<>();
-        int lc=hm.size();
-        for(int w = 0; w < lc; w++){
-            ArrayList<Integer> List = hm.get(w);
+// Method 1
+// class Tree
+// {   
+//     //static int lc=0;
+//     public void fillTheHashMap(Node root,HashMap<Integer,ArrayList<Integer>> hm,int diag){
+//         //lc=Math.max(lc,diag);
+//         if(hm.containsKey(diag) == false){
+//                 hm.put(diag, new ArrayList<>());
+//                 hm.get(diag).add(root.data);
+//             } else {
+//                 hm.get(diag).add(root.data); 
+//             }
             
-            for(int temp: List)
-                res.add(temp);
-        }
+//             if(root.left!=null){
+//                 fillTheHashMap(root.left,hm,diag+1);
+//             }
+//             if(root.right!=null){
+//                 fillTheHashMap(root.right,hm,diag);
+//             }
+//     }
+//      public ArrayList<Integer> diagonal(Node root)
+//       {
+//       HashMap<Integer,ArrayList<Integer>> hm = new HashMap<>();
+//       //lc=0;
+       
+//       fillTheHashMap(root,hm,0);
+
+//         ArrayList<Integer> res = new ArrayList<>();
+//         int lc=hm.size();
+//         for(int w = 0; w < lc; w++){
+//             ArrayList<Integer> List = hm.get(w);
+            
+//             for(int temp: List)
+//                 res.add(temp);
+//         }
         
 
-        return res;
+//         return res;
+//       }
+// }
+
+//Method 2
+class Tree
+{   
+    
+     public ArrayList<Integer> diagonal(Node root)
+      {
+       ArrayList<Integer> ans = new ArrayList<>();
+       Queue<Node> qu=new LinkedList<>();
+       qu.add(root);
+       while(qu.size()!=0){
+           Node rem=qu.remove();
+           
+           Node node=rem;
+           while(node!=null){
+               ans.add(node.data);
+               
+               if(node.left!=null){
+                    qu.add(node.left);
+                }
+               node=node.right;
+           }
+       }
+       return ans;
       }
 }
