@@ -14,6 +14,8 @@
  * }
  */
 
+// METHOD-->1  lambda functions
+
 // class Solution {
 //     public class pair{
 //         int vl;
@@ -87,6 +89,9 @@
 //     }
 // }
 
+
+//  Method -2 comparable
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -102,6 +107,8 @@
  *     }
  * }
  */
+
+
 class Solution {
     class Pair implements Comparable<Pair> {
         TreeNode node;
