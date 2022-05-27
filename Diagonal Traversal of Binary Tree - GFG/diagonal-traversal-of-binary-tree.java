@@ -122,15 +122,7 @@ class Node{
     }
 }*/
 class Tree
-{   public class pair{
-        Node node;
-        int level;
-        
-        pair(int level,Node node){
-            this.level=level;
-            this.node=node;
-        }
-    }
+{   
     //static int lc=0;
     public void fillTheHashMap(Node root,HashMap<Integer,ArrayList<Integer>> hm,int diag){
         //lc=Math.max(lc,diag);
