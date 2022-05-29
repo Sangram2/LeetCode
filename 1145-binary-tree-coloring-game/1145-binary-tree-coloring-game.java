@@ -48,16 +48,16 @@ class Solution {
     public boolean btreeGameWinningMove(TreeNode root, int n, int x) {
         // TreeNode p1=findNode(root,x);
         
+        // int totalSize=size(root);
+        
         size(root,x);
-        
-        
         //int sizeleft=size(p1.left);
         //int sizeright=size(p1.right);
         
         // int sizeOfP1 =sizeleft+sizeright+1;
         int sizeOfP1=xKaleft+xKaright+1;
-        int remaining= n-sizeOfP1;
-        
+        // int remaining= totalSize-sizeOfP1;
+         int remaining= n-sizeOfP1;
         int minrq=(n+1)/2;
         int p2=Math.max(remaining,Math.max(xKaleft,xKaright));
         if(p2>=minrq){
