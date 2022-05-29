@@ -121,7 +121,7 @@ class Solution
         
         if(node.left != null){
             leftWall(node.left, list);
-        } else if(node.right != null){
+        } else{
             leftWall(node.right, list);
         }
     }
@@ -130,12 +130,12 @@ class Solution
         if(node == null){
             return;
         }      
-        
-        leaves(node.left, list);
-        
         if(node.left == null && node.right == null){
             list.add(node.data);
         }
+        leaves(node.left, list);
+        
+        
         
         leaves(node.right, list);
     }
@@ -147,7 +147,7 @@ class Solution
         
         if(node.right != null){
             rightWall(node.right, list);
-        } else if(node.left != null){
+        } else{
             rightWall(node.left, list);
         }
         
