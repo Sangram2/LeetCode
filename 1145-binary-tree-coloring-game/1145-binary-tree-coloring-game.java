@@ -43,10 +43,11 @@ class Solution {
         TreeNode p1=findNode(root,x);
         
         int totalSize=size(root);
-        int sizeOfP1=size(p1);
+        
         
         int sizeleft=size(p1.left);
         int sizeright=size(p1.right);
+        int sizeOfP1 =sizeleft+sizeright+1;
         int remaining= totalSize-sizeOfP1;
         
         int minrq=(n+1)/2;
