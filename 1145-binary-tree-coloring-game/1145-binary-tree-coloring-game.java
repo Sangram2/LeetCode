@@ -47,6 +47,7 @@ class Solution {
         
         int sizeleft=size(p1.left);
         int sizeright=size(p1.right);
+        
         int sizeOfP1 =sizeleft+sizeright+1;
         int remaining= totalSize-sizeOfP1;
         
