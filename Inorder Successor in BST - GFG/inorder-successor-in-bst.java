@@ -122,21 +122,70 @@ class Node{
 	}
 }
 */
+
+//method 1 
+// class Solution
+// {
+//     // returns the inorder successor of the Node x in BST (rooted at 'root')
+// 	public Node inorderSuccessor(Node root,Node x)
+//          {
+            
+//             Node prev=null;
+//             Node curr=root;
+//             while(curr!=null){
+//                 if(curr.left==null){
+//                     if(prev!=null && prev.data==x.data){
+//                         return curr;
+//                     }
+                    
+//                     prev=curr;
+//                     curr=curr.right;
+//                 }
+//                 else{
+//                     Node iop=curr.left;
+//                     while(iop.right!=null && iop.right!=curr){
+//                         iop=iop.right;
+//                     }
+//                     if(iop.right==null){
+//                         iop.right=curr;
+//                         curr=curr.left;
+//                     }
+//                     else{
+//                         if(prev!=null && prev.data==x.data){
+//                             return curr;
+//                         }
+                        
+//                         prev=curr;
+//                         iop.right=null;
+//                         curr=curr.right;
+//                     }
+//                 }
+//             }
+//             return null;
+//          }
+// }
+
+//method 2
 class Solution
 {
     // returns the inorder successor of the Node x in BST (rooted at 'root')
 	public Node inorderSuccessor(Node root,Node x)
          {
             
-            Node prev=null;
+            Node succ=null;
             Node curr=root;
+            boolean found=false;
             while(curr!=null){
                 if(curr.left==null){
-                    if(prev!=null && prev.data==x.data){
-                        return curr;
+                    if(found){
+                        succ=curr;
+                        break;
+                    }
+                    if(curr==x){
+                        found=true;
                     }
                     
-                    prev=curr;
+                    
                     curr=curr.right;
                 }
                 else{
@@ -149,16 +198,20 @@ class Solution
                         curr=curr.left;
                     }
                     else{
-                        if(prev!=null && prev.data==x.data){
-                            return curr;
+                        if(found){
+                            succ=curr;
+                            break;
+                        }
+                        if(curr==x){
+                            found=true;
                         }
                         
-                        prev=curr;
+                        
                         iop.right=null;
                         curr=curr.right;
                     }
                 }
             }
-            return null;
+            return succ;
          }
 }
