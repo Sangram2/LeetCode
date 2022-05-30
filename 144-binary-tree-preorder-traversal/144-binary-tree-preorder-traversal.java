@@ -36,63 +36,63 @@
 
 
 //Morris Traversal--MyApproach
-// class Solution {
+class Solution {
     
     
-//     public List<Integer> preorderTraversal(TreeNode root) {
-//        List<Integer> ans=new ArrayList<>();
-//         TreeNode curr=root;
+    public List<Integer> preorderTraversal(TreeNode root) {
+       List<Integer> ans=new ArrayList<>();
+        TreeNode curr=root;
         
-//         while(curr != null){
-//             if(curr.left!=null){
-//                 TreeNode iop=curr.left;
-//                 while(iop.right!=null){
-//                     iop=iop.right;
-//                 }
-//                 iop.right=curr.right;
-//                 ans.add(curr.val);
-//                 curr=curr.left;
-//             }
-//             else{
-//                 ans.add(curr.val);
-//                 curr=curr.right;
+        while(curr != null){
+            if(curr.left!=null){
+                TreeNode iop=curr.left;
+                while(iop.right!=null){
+                    iop=iop.right;
+                }
+                iop.right=curr.right;
+                ans.add(curr.val);
+                curr=curr.left;
+            }
+            else{
+                ans.add(curr.val);
+                curr=curr.right;
                 
-//             }
-//         }
-//         return ans;
-//     }
-// }
+            }
+        }
+        return ans;
+    }
+}
 
 
 //Morris Traversal -->sir ka approach
-class Solution {
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> retVal = new ArrayList<>();
+// class Solution {
+//     public List<Integer> preorderTraversal(TreeNode root) {
+//         List<Integer> retVal = new ArrayList<>();
         
-        TreeNode curr = root;
+//         TreeNode curr = root;
         
-        while(curr != null){
-            if(curr.left == null){
-                retVal.add(curr.val);
-                curr = curr.right;
-            } else {
-                TreeNode iop = curr.left;
-                while(iop.right != null && iop.right != curr){
-                    iop = iop.right;
-                }
+//         while(curr != null){
+//             if(curr.left == null){
+//                 retVal.add(curr.val);
+//                 curr = curr.right;
+//             } else {
+//                 TreeNode iop = curr.left;
+//                 while(iop.right != null && iop.right != curr){
+//                     iop = iop.right;
+//                 }
                 
-                if(iop.right == null){
-                    retVal.add(curr.val);
-                    iop.right = curr; // making the thread
-                    curr = curr.left;
-                } else {
-                    iop.right = null;
+//                 if(iop.right == null){
+//                     retVal.add(curr.val);
+//                     iop.right = curr; // making the thread
+//                     curr = curr.left;
+//                 } else {
+//                     iop.right = null;
                     
-                    curr = curr.right;
-                }
-            }
-        }
+//                     curr = curr.right;
+//                 }
+//             }
+//         }
         
-        return retVal;
-    }
-}
+//         return retVal;
+//     }
+// }
