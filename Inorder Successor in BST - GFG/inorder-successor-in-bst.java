@@ -124,46 +124,46 @@ class Node{
 */
 
 //method 1 
-class Solution
-{
-    // returns the inorder successor of the Node x in BST (rooted at 'root')
-	public Node inorderSuccessor(Node root,Node x)
-         {
+// class Solution
+// {
+//     // returns the inorder successor of the Node x in BST (rooted at 'root')
+// 	public Node inorderSuccessor(Node root,Node x)
+//          {
             
-            Node prev=null;
-            Node curr=root;
-            while(curr!=null){
-                if(curr.left==null){
-                    if(prev!=null && prev==x){
-                        return curr;
-                    }
+//             Node prev=null;
+//             Node curr=root;
+//             while(curr!=null){
+//                 if(curr.left==null){
+//                     if(prev!=null && prev==x){
+//                         return curr;
+//                     }
                     
-                    prev=curr;
-                    curr=curr.right;
-                }
-                else{
-                    Node iop=curr.left;
-                    while(iop.right!=null && iop.right!=curr){
-                        iop=iop.right;
-                    }
-                    if(iop.right==null){
-                        iop.right=curr;
-                        curr=curr.left;
-                    }
-                    else{
-                        if(prev!=null && prev==x){
-                            return curr;
-                        }
+//                     prev=curr;
+//                     curr=curr.right;
+//                 }
+//                 else{
+//                     Node iop=curr.left;
+//                     while(iop.right!=null && iop.right!=curr){
+//                         iop=iop.right;
+//                     }
+//                     if(iop.right==null){
+//                         iop.right=curr;
+//                         curr=curr.left;
+//                     }
+//                     else{
+//                         if(prev!=null && prev==x){
+//                             return curr;
+//                         }
                         
-                        prev=curr;
-                        iop.right=null;
-                        curr=curr.right;
-                    }
-                }
-            }
-            return null;
-         }
-}
+//                         prev=curr;
+//                         iop.right=null;
+//                         curr=curr.right;
+//                     }
+//                 }
+//             }
+//             return null;
+//          }
+// }
 
 //method 2
 // class Solution
@@ -215,3 +215,37 @@ class Solution
 //             return succ;
 //          }
 // }
+
+//method 3
+class Solution
+{
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
+	public Node inorderSuccessor(Node root,Node x)
+         {
+          Node succ=null;  
+          if(x.right!=null){
+              succ=x.right;
+              while(succ.left!=null){
+                  succ=succ.left;
+              }
+              return succ;
+          }
+          else{
+              while(root!=null){
+                  if(x.data>root.data){
+                      root=root.right;
+                  }
+                  else if(x.data<root.data){
+                      succ=root;
+                      root=root.left;
+                  }
+                  else{
+                      break;
+                  }
+              }
+              return succ;
+          }
+            
+         }
+}
+
