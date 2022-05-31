@@ -110,31 +110,52 @@ class Tree {
 
 //User function Template for Java
 
-class Solution
-{   static int ans=Integer.MIN_VALUE;
+// class Solution
+// {   
+//     static int ans=Integer.MIN_VALUE;
 
-    public static void findLtoRoot(Node node,int sum){
-        if(node.left==null && node.right==null){
-            int pans=sum+node.data;
-            if(pans>ans){
-                ans=pans;
-            }
-        }
-        else{
-            int new_sum=sum+node.data;
-            if(node.left!=null)
-                findLtoRoot(node.left,new_sum);
-            if(node.right!=null)    
-                findLtoRoot(node.right,new_sum);
-        }
+//     public static void findLtoRoot(Node node,int sum){
+//         if(node.left==null && node.right==null){
+//             int pans=sum+node.data;
+//             if(pans>ans){
+//                 ans=pans;
+//             }
+//         }
+//         else{
+//             int new_sum=sum+node.data;
+//             if(node.left!=null)
+//                 findLtoRoot(node.left,new_sum);
+//             if(node.right!=null)    
+//                 findLtoRoot(node.right,new_sum);
+//         }
         
-    }
+//     }
+    
+    
+//     public static int maxPathSum(Node root)
+//     {
+//         ans=Integer.MIN_VALUE;
+//         findLtoRoot(root,0);
+//         return ans;
+//     }
+// }
+
+
+class Solution
+{   
+
+    
     
     
     public static int maxPathSum(Node root)
     {
-        ans=Integer.MIN_VALUE;
-        findLtoRoot(root,0);
-        return ans;
+        if(root==null){
+            return 0;
+        }
+        
+        int leftSum=maxPathSum(root.left);
+        int rightSum=maxPathSum(root.right);
+        return Math.max(leftSum,rightSum)+root.data;
+        
     }
 }
