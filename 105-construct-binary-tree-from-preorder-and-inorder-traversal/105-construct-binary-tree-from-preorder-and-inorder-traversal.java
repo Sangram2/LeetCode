@@ -19,9 +19,9 @@ class Solution {
         if(stIn==enIn){
            return new TreeNode(inorder[stIn]); 
         }
-        else if(stIn>enIn){
-            return null;
-        }
+        // else if(stIn>enIn){
+        //     return null;
+        // }
         TreeNode root=new TreeNode(preorder[stp]);
         int mid=-1;
         for(int i=stIn;i<=enIn;i++){
