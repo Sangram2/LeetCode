@@ -149,12 +149,15 @@ class Solution
     
     public static int maxPathSum(Node root)
     {
-        if(root==null){
-            return 0;
+        if(root.left==null && root.right==null){
+            return root.data;
         }
-        
-        int leftSum=maxPathSum(root.left);
-        int rightSum=maxPathSum(root.right);
+        int leftSum=Integer.MIN_VALUE;
+        int rightSum=Integer.MIN_VALUE;
+        if(root.left!=null)
+            leftSum=maxPathSum(root.left);
+        if(root.right!=null)
+            rightSum=maxPathSum(root.right);
         return Math.max(leftSum,rightSum)+root.data;
         
     }
