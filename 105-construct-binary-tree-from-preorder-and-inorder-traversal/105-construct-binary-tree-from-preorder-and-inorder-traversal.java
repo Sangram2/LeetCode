@@ -16,10 +16,10 @@
 class Solution {
     
     public TreeNode build(int[] preorder,int stp,int enp,int stIn,int enIn,HashMap<Integer,Integer> hm){
-        if(stp==enp){
-           return new TreeNode(preorder[stp]); 
-        }
-        else if(stIn>enIn){
+        // if(stp==enp){
+        //    return new TreeNode(preorder[stp]); 
+        // }
+         if(stIn>enIn || stp>enp){
             return null;
         }
         TreeNode root=new TreeNode(preorder[stp]);
