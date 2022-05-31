@@ -109,7 +109,7 @@ class Tree {
 
 
 //User function Template for Java
-
+//Method 1
 // class Solution
 // {   
 //     static int ans=Integer.MIN_VALUE;
@@ -141,24 +141,49 @@ class Tree {
 // }
 
 
-class Solution
-{   
+
+//Method 2
+// class Solution
+// {   
 
     
     
     
+//     public static int maxPathSum(Node root)
+//     {
+//         if(root.left==null && root.right==null){
+//             return root.data;
+//         }
+//         int leftSum=Integer.MIN_VALUE;
+//         int rightSum=Integer.MIN_VALUE;
+//         if(root.left!=null)
+//             leftSum=maxPathSum(root.left);
+//         if(root.right!=null)
+//             rightSum=maxPathSum(root.right);
+//         return Math.max(leftSum,rightSum)+root.data;
+        
+//     }
+// }
+
+
+//Method 3
+class Solution
+{
     public static int maxPathSum(Node root)
     {
-        if(root.left==null && root.right==null){
+        if(root.left != null && root.right != null){
+            int left = maxPathSum(root.left);
+            int right = maxPathSum(root.right);
+            return Math.max(left, right) + root.data;
+        } else if(root.left != null){
+            int left = maxPathSum(root.left);
+            return left + root.data;
+        } else if(root.right != null){
+            int right = maxPathSum(root.right);
+            return right + root.data;            
+        } else {
+            // leaf
             return root.data;
         }
-        int leftSum=Integer.MIN_VALUE;
-        int rightSum=Integer.MIN_VALUE;
-        if(root.left!=null)
-            leftSum=maxPathSum(root.left);
-        if(root.right!=null)
-            rightSum=maxPathSum(root.right);
-        return Math.max(leftSum,rightSum)+root.data;
-        
     }
 }
