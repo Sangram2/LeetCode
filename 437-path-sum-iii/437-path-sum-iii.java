@@ -13,36 +13,77 @@
  *     }
  * }
  */
+
+//Method 2
 class Solution {
-    int count = 0;
+    static int ans=0;
     public int pathSum(TreeNode root, int targetSum) {
-        
-        travel1(root,targetSum);
-        
-        
-        
-        return count;
+        if(root==null){
+            return 0;
+        }
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        hm.put(0,1);
+        ans=0;
+        countPath(root,hm,0,targetSum);
+        return ans;
     }
-    
-    public void travel1(TreeNode node,int target){
-        if(node == null){
+    public void countPath(TreeNode node,HashMap<Integer,Integer> hm,int sum,int target){
+        if(node==null){
             return;
         }
+        sum+=node.val;
         
-        travel2(node,0,target);
-        travel1(node.left,target);
-        travel1(node.right,target);
-    }
-    
-    public void travel2(TreeNode node, int csum, int targetSum){
-        if(node == null){
-            return;
+        if(hm.containsKey(sum-target)){
+            ans+=hm.get(sum-target);
         }
-        if(csum + node.val == targetSum){
-            count++;
+        hm.put(sum,hm.getOrDefault(sum,0)+1);
+        countPath(node.left,hm,sum,target);
+        countPath(node.right,hm,sum,target);
+        
+        
+        if(hm.get(sum)-1==0){
+            hm.remove(sum);
+        }
+        else{
+            hm.put(sum,hm.get(sum)-1);
         }
         
-        travel2(node.left, csum + node.val, targetSum);
-        travel2(node.right, csum + node.val, targetSum);
+        
     }
 }
+
+
+//Method 2
+// class Solution {
+//     int count = 0;
+//     public int pathSum(TreeNode root, int targetSum) {
+        
+//         travel1(root,targetSum);
+        
+        
+        
+//         return count;
+//     }
+    
+//     public void travel1(TreeNode node,int target){
+//         if(node == null){
+//             return;
+//         }
+        
+//         travel2(node,0,target);
+//         travel1(node.left,target);
+//         travel1(node.right,target);
+//     }
+    
+//     public void travel2(TreeNode node, int csum, int targetSum){
+//         if(node == null){
+//             return;
+//         }
+//         if(csum + node.val == targetSum){
+//             count++;
+//         }
+        
+//         travel2(node.left, csum + node.val, targetSum);
+//         travel2(node.right, csum + node.val, targetSum);
+//     }
+// }
