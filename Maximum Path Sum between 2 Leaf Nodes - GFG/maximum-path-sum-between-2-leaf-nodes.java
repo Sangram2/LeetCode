@@ -120,9 +120,9 @@ class Solution
     static int ans=Integer.MIN_VALUE;
     int maxPathSum(Node root)
     { 
-        if(root.left==null && root.right==null){
-            return root.data;
-        }
+        // if(root.left==null && root.right==null){
+        //     return root.data;
+        // }
         ans=Integer.MIN_VALUE;
         int mystery=solve(root);
         
