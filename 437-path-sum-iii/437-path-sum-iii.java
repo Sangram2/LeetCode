@@ -28,16 +28,18 @@ class Solution {
         return ans;
     }
     public void countPath(TreeNode node,HashMap<Integer,Integer> hm,int sum,int target){
-        if(node==null){
-            return;
-        }
+        // if(node==null){
+        //     return;
+        // }
         sum+=node.val;
         
         if(hm.containsKey(sum-target)){
             ans+=hm.get(sum-target);
         }
         hm.put(sum,hm.getOrDefault(sum,0)+1);
-        countPath(node.left,hm,sum,target);
+        if(node.left!=null)
+            countPath(node.left,hm,sum,target);
+        if(node.right!=null)
         countPath(node.right,hm,sum,target);
         
         
