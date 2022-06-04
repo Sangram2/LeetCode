@@ -111,7 +111,7 @@ class Node{
 }
  */
  class Solution {
-     static long ans=0;
+     static long ans=0L;
     long div=1000000007;
     public long imgMultiply(Node root)
     {
