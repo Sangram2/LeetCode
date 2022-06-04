@@ -21,6 +21,12 @@ class Node {
 };
 */
 
+// class Solution {
+//     public Node connect(Node root) {
+        
+//     }
+// }
+
 class Solution {
     public Node connect(Node root) {
         if(root==null){
