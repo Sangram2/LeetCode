@@ -21,23 +21,67 @@ class Node {
 };
 */
 
+//Method 1
 class Solution {
     public Node connect(Node root) {
-        if(root==null){
-            return null;
-        }
-        Node curr=root;
-        while(curr.left!=null){
-            Node lt=curr;
-            while(lt!=null){
-                lt.left.next=lt.right;
-                if(lt.next!=null){
-                    lt.right.next=lt.next.left;
+        Node curr = root;
+        Node head = null;
+        Node tail = null;
+
+        while(curr != null){
+            // code for curr on level x, and head-tail on level x + 1
+            while(curr != null){
+                if(curr.left != null){
+                    if(head == null){
+                        head = curr.left;
+                        tail = curr.left;
+                    } else {
+                        tail.next = curr.left;
+                        tail = curr.left;
+                    }
                 }
-                lt=lt.next;
+
+                if(curr.right != null){
+                    if(head == null){
+                        head = curr.right;
+                        tail = curr.right;
+                    } else {
+                        tail.next = curr.right;
+                        tail = curr.right;
+                    }
+                }
+
+                curr = curr.next;
             }
-            curr=curr.left;
+
+            curr = head;
+            head = null;
+            tail = null;
         }
+
         return root;
     }
 }
+
+//Method 2
+
+// class Solution {
+//     public Node connect(Node root) {
+//         if(root==null){
+//             return null;
+//         }
+//         Node curr=root;
+//         while(curr.left!=null){
+//             Node lt=curr;
+//             while(lt!=null){
+//                 lt.left.next=lt.right;
+//                 if(lt.next!=null){
+//                     lt.right.next=lt.next.left;
+//                 }
+//                 lt=lt.next;
+//             }
+//             curr=curr.left;
+//         }
+//         return root;
+//     }
+// }
