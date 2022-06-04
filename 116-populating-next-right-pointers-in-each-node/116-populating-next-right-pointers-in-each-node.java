@@ -29,14 +29,13 @@ class Solution {
         Node curr=root;
         while(curr.left!=null){
             Node lt=curr;
-            do{
+            while(lt!=null){
                 lt.left.next=lt.right;
                 if(lt.next!=null){
                     lt.right.next=lt.next.left;
                 }
                 lt=lt.next;
-                
-            } while(lt!=null);
+            }
             curr=curr.left;
         }
         return root;
