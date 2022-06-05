@@ -1,11 +1,11 @@
 class Solution {
     public int[] sumOfDistancesInTree(int n, int[][] edges) {
         HashSet<Integer>[] graph = new HashSet[n];
-        for(int i = 0; i < graph.length; i++){
+        for(int i = 0; i <n; i++){
             graph[i] = new HashSet<>();
         }
 
-        for(int i = 0; i < edges.length; i++){
+        for(int i = 0; i < n-1; i++){
             int u = edges[i][0];
             int v = edges[i][1];
 
