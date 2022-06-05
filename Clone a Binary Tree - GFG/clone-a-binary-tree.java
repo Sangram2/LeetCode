@@ -169,14 +169,12 @@ class Solution{
         Tree dup=node.left;
         if(dup.left!=null){
             node.left=dup.left;
-            dup.left=dup.left.left;
+            
         }else{
             node.left=dup.left;
         }
         
-        if(node.right!=null){
-            dup.right=node.right.left;
-        }
+        
         dup.left=left;
         dup.right=right;
         return dup;
