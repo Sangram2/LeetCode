@@ -167,13 +167,7 @@ class Solution{
         Tree left=extractDuplicate(node.left.left);
         Tree right=extractDuplicate(node.right);
         Tree dup=node.left;
-        if(dup.left!=null){
-            node.left=dup.left;
-            
-        }else{
-            node.left=dup.left;
-        }
-        
+        node.left=dup.left;
         
         dup.left=left;
         dup.right=right;
