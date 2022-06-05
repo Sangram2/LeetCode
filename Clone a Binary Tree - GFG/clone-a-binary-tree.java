@@ -131,9 +131,10 @@ class Tree{
 }*/
 class Solution{
     public Tree cloneTree(Tree tree){
-       createDuplicate(tree);
-       randomSet(tree);
-       return extractDuplicate(tree);
+      createDuplicate(tree);
+      randomSet(tree);
+      return extractDuplicate(tree);
+    
     }
     public void createDuplicate(Tree node){
         if(node==null){
