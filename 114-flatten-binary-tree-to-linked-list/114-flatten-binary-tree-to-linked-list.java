@@ -121,18 +121,38 @@
 
 // }
 
+// Method 3
+// class Solution {
+//     TreeNode prev=null;
+//     public void flatten(TreeNode root) {
+//         if(root==null){
+//             return;
+//         }
+//         flatten(root.right);
+//         flatten(root.left);
+        
+//         root.right=prev;
+//         root.left=null;
+//         prev=root;
+//     }
+// }
 
+// method 4
 class Solution {
     TreeNode prev=null;
     public void flatten(TreeNode root) {
         if(root==null){
             return;
         }
-        flatten(root.right);
-        flatten(root.left);
-        
-        root.right=prev;
-        root.left=null;
+        TreeNode ol=root.left;
+        TreeNode or=root.right;
+        if(prev!=null){
+            prev.right=root;
+            prev.left=null;
+        }
         prev=root;
+        flatten(ol);
+        flatten(or);
+        
     }
 }
