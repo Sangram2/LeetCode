@@ -23,7 +23,7 @@ class Solution {
         return ans;
     }
     public TreeNode helper(HashMap<Integer,Integer> hm,int[] pre, int[] post,int spre,int epre,int spo,int epo){
-        if(spre>epre || spo>epo){
+        if(spre>epre || spo>epo){  //This case will never generate if the tree is full
             return null;
         }
         
@@ -31,13 +31,14 @@ class Solution {
             return new TreeNode(pre[spre]);
         }
         TreeNode root=new TreeNode(pre[spre]);
-        
+        if(spre+1<=epre){  //you can revove this if statement and write every thing outside the if block if the treee is full.
+            
             int idx = hm.get(pre[spre+1]);
             int len=idx-spo+1;
         
             root.left=helper(hm,pre,post,spre+1,spre+len,spo,idx);
             root.right=helper(hm,pre,post,spre+len+1,epre,idx+1,epo-1);
-        
+        }
         return root;
     }
 }
