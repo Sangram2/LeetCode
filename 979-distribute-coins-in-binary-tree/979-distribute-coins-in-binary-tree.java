@@ -32,7 +32,7 @@ class Solution {
     }
     public pair helper(TreeNode root){
         if(root==null){
-            return new pair(0,0);
+            return new pair();
         }
         pair left=helper(root.left);
         pair right=helper(root.right);
