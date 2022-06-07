@@ -48,13 +48,13 @@ public class Codec {
         rootp.node=new TreeNode(Integer.parseInt(darray[0]));
         
         st.push(rootp);
-        int idx=0;
+        int idx=1;
         
         while(st.size()>0){
             pair rem=st.peek();
             
             if(rem.state==0){
-                idx++;
+                
                 rem.state++;
                 if(darray[idx].equals(".")==false){
                     pair leftp=new pair();
@@ -62,14 +62,14 @@ public class Codec {
                     rem.node.left=leftp.node;
                     st.push(leftp);
                 }
-               
+               idx++;
                 
 
             }
             
             
             else if(rem.state == 1){
-                idx++;
+                
                 rem.state++;
                 if(darray[idx].equals(".")==false){
                     pair rightp=new pair();
@@ -77,6 +77,7 @@ public class Codec {
                     rem.node.right=rightp.node;
                     st.push(rightp);
                 }
+                idx++;
                 
             }
             
