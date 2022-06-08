@@ -20,6 +20,9 @@ class Solution {
         return root;
     }
     public TreeNode helper(String str,int depth){
+        if(i>=str.length()){
+            return null;
+        }
         int d=0;
         while(i+d<str.length() && str.charAt(i+d)=='-'){
             d++;
