@@ -20,9 +20,9 @@ class Solution {
         return root;
     }
     public TreeNode helper(String str,int depth){
-        if(i>=str.length()){
-            return null;
-        }
+        // if(i>=str.length()){ this condition is not required as code will never reach out of index.
+        //     return null;
+        // }
         int d=0;
         while(i+d<str.length() && str.charAt(i+d)=='-'){
             d++;
@@ -38,7 +38,8 @@ class Solution {
         TreeNode node=new TreeNode(val);
         i=i+d+nd;
         node.left=helper(str,depth+1);
-        node.right=helper(str,depth+1);
+        if(node.left!=null)
+            node.right=helper(str,depth+1);
         return node;
     }
 }
