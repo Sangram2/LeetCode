@@ -19,7 +19,7 @@ class Solution {
     //     else{
     //         return lowestCommonAncestor(root.right,p,q);
     //     }
-    // }
+    // }--------------------------------> MY SOLUTION.....
     
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         TreeNode curr = root;
