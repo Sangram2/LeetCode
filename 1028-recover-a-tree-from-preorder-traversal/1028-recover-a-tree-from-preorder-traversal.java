@@ -13,7 +13,40 @@
  *     }
  * }
  */
+// class Solution {
+//     int i=0;
+//     public TreeNode recoverFromPreorder(String traversal) {
+//         TreeNode root=helper(traversal,0);
+//         return root;
+//     }
+//     public TreeNode helper(String str,int depth){
+//         // if(i>=str.length()){ this condition is not required as code will never reach out of index.
+//         //     return null;
+//         // }
+//         int d=0;
+//         while(i+d<str.length() && str.charAt(i+d)=='-'){
+//             d++;
+//         }
+//         if(d!=depth){
+//             return null;
+//         }
+//         int nd=0;
+//         while(i+d+nd<str.length() && str.charAt(i+d+nd)!='-'){
+//             nd++;
+//         }
+//         int val=Integer.parseInt(str.substring(i+d,i+d+nd));
+//         TreeNode node=new TreeNode(val);
+//         i=i+d+nd;
+//         node.left=helper(str,depth+1);
+//         if(node.left!=null)
+//             node.right=helper(str,depth+1);
+//         return node;
+//     }
+// }
+//Optimization
+
 class Solution {
+    int pdc=-1;
     int i=0;
     public TreeNode recoverFromPreorder(String traversal) {
         TreeNode root=helper(traversal,0);
@@ -24,11 +57,18 @@ class Solution {
         //     return null;
         // }
         int d=0;
-        while(i+d<str.length() && str.charAt(i+d)=='-'){
-            d++;
+        if(pdc!=-1){
+            d=pdc;
+        }else{
+            while(i+d<str.length() && str.charAt(i+d)=='-'){
+                d++;
+            }
         }
         if(d!=depth){
+            pdc=d;
             return null;
+        }else{
+            pdc=-1;
         }
         int nd=0;
         while(i+d+nd<str.length() && str.charAt(i+d+nd)!='-'){
