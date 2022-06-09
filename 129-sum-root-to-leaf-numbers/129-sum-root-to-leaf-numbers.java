@@ -14,28 +14,26 @@
  * }
  */
 class Solution {
+    static int ans=0;
     public int sumNumbers(TreeNode root) {
-        ArrayList<Integer> sumArray = new ArrayList<>();
-        helper(root,0,sumArray);
-        int ans=0;
-        for(int i=0;i<sumArray.size();i++){
-            ans+=sumArray.get(i);
-        }
+        ans=0;
+        helper(root,0);
+        
         return ans;
     }
     
-    public void helper(TreeNode root,int num,ArrayList<Integer> sumArray){
+    public void helper(TreeNode root,int num){
         if(root.left!=null && root.right!=null){
-            helper(root.left,(num*10)+root.val,sumArray);
-            helper(root.right,(num*10)+root.val,sumArray);        }
+            helper(root.left,(num*10)+root.val);
+            helper(root.right,(num*10)+root.val);        }
         else if(root.left!=null){
-            helper(root.left,(num*10)+root.val,sumArray);
+            helper(root.left,(num*10)+root.val);
         }
         else if(root.right!=null){
-            helper(root.right,(num*10)+root.val,sumArray);  
+            helper(root.right,(num*10)+root.val);  
         }
         else{
-            sumArray.add((num*10)+root.val);
+            ans+= (num*10)+root.val;
             return;
         }
     }
