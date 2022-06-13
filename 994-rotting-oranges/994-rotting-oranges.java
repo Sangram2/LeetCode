@@ -11,18 +11,18 @@ class Solution {
     }
     public int orangesRotting(int[][] grid){
         Queue<pair> qu=new LinkedList<>();
-        int frashOranges=0;
+        int freshOranges=0;
         for(int i=0;i<grid.length;i++){
             for(int j=0;j<grid[0].length;j++){
                 if(grid[i][j]==2){
                     qu.add(new pair(i,j));
                 }
                 if(grid[i][j]==1){
-                    frashOranges++;
+                    freshOranges++;
                 }
             }
         }
-        if(frashOranges==0){
+        if(freshOranges==0){
            return 0; 
         }
             
@@ -38,13 +38,13 @@ class Solution {
                     if(h>=0 && h<grid.length && k>=0 && k<grid[0].length && grid[h][k]==1){
                         grid[h][k]=2;
                         qu.add(new pair(h,k));
-                        frashOranges--;
+                        freshOranges--;
                     }
                 }
             }
             t++;
         }
-        return frashOranges!=0 ? -1:t;
+        return freshOranges!=0 ? -1:t;
         // for(int i=0;i<grid.length;i++){
         //     for(int j=0;j<grid[0].length;j++){
         //         if(grid[i][j]==1){
