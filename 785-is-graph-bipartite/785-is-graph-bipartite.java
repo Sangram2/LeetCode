@@ -49,11 +49,14 @@ class Solution {
         // }
         
         for(int i=0;i<n;i++){
-            
-            boolean ans=solveBFS(graph,vis,i);
-            if(ans==false){
-                return false;
+            if(vis[i]==-1){
+                // boolean ans=solveBFS(graph,vis,i);
+                boolean ans=solveDFS(graph,vis,i,0);
+                if(ans==false){
+                    return false;
+                }
             }
+            
 
             
         }
@@ -64,8 +67,28 @@ class Solution {
         
             
     }
+    public boolean solveDFS(int[][] graph,int []vis,int src,int color){
+        if(vis[src]==-1){
+            vis[src]=color;
+            for(int nbr:graph[src]){
+                
+                    boolean f=solveDFS(graph,vis,nbr,1-color);
+                    if(f==false){
+                        return false;
+                    }
+                
+            }
+            
+        }
+        else{
+            if(vis[src]!=color){
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 
 
-//DFS Method
+
