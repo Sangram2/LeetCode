@@ -49,10 +49,13 @@ class Solution {
         // }
         
         for(int i=0;i<n;i++){
-            boolean ans=solve(graph,vis,i);
-            if(ans==false){
-                return false;
+            if(vis[i]==-1){
+                boolean ans=solve(graph,vis,i);
+                if(ans==false){
+                    return false;
+                }
             }
+            
         }
         return true;
         
