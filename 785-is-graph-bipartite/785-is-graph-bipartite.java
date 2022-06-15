@@ -1,14 +1,3 @@
-
-// //DFS
-// class Solution {
-//     public boolean isBipartite(int[][] graph) {
-        
-//     }
-// }
-
-
-//BFS
-
 class Solution {
     public class pair{
         int val;
@@ -19,7 +8,7 @@ class Solution {
             this.color=color; //0-->red <--> 1-->blue 
         }
     }
-    public boolean solve(int[][] graph,int []vis,int src){
+    public boolean solveBFS(int[][] graph,int []vis,int src){
         Queue<pair> qu=new LinkedList<>();
         if(vis[src]==-1){
             qu.add(new pair(src,0));
@@ -61,7 +50,7 @@ class Solution {
         
         for(int i=0;i<n;i++){
             
-            boolean ans=solve(graph,vis,i);
+            boolean ans=solveBFS(graph,vis,i);
             if(ans==false){
                 return false;
             }
@@ -76,3 +65,7 @@ class Solution {
             
     }
 }
+
+
+
+//DFS Method
