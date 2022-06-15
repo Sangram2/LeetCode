@@ -1,3 +1,14 @@
+
+// //DFS
+// class Solution {
+//     public boolean isBipartite(int[][] graph) {
+        
+//     }
+// }
+
+
+//BFS
+
 class Solution {
     public class pair{
         int val;
