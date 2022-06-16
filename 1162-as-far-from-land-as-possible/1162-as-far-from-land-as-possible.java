@@ -35,7 +35,7 @@ class Solution {
                 continue;
             }
             vis[rem.x][rem.y]=true;
-            distance=rem.dis;
+            distance=Math.max(distance,rem.dis);
             
             
             for(int i=0;i<dir.length;i++){
