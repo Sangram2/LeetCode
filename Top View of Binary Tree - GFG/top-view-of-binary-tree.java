@@ -152,9 +152,10 @@ class Solution
             for(int i=0;i<lsize;i++){
                 pair rem = qu.remove();
                 int key = rem.vl;
-                min=Math.min(min,key);
-                max=Math.max(max,key);
+                
                 if(!hm.containsKey(key)){
+                    min=Math.min(min,key);
+                    max=Math.max(max,key);
                     hm.put(key,rem.node.data);
                 }
                 if(rem.node.left!=null){
