@@ -125,10 +125,11 @@ class Solution
         // }
         ans=Integer.MIN_VALUE;
         int mystery=solve(root);
-        
+        /// This is the extra modification due to the conditions in gfg-----------------------
         if(root.right==null || root.left==null){
             ans=Math.max(ans,mystery);
         }
+        // -----------------------------------------------------------------------------------
         return ans;
         
     } 
