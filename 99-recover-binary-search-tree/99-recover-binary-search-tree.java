@@ -52,11 +52,9 @@ class Solution {
                         if(curr.val<prev.val){
                             if(n1==null){
                                 n1=prev;
-                                n2=curr;
+                               
                             }
-                            else{
-                                n2=curr;
-                            }
+                            n2=curr;
                         }
                         
                     }
