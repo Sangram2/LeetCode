@@ -151,12 +151,12 @@ class Solution {
                 rmw = temp.w;
             }
 
-            if(map.containsKey(temp.w) == false){
+            if(map.containsKey(temp.w) == false)
                 map.put(temp.w, new ArrayList<>());
-                map.get(temp.w).add(temp);
-            } else {
-                map.get(temp.w).add(temp); 
-            }
+                
+                
+            map.get(temp.w).add(temp);
+            
 
             if(temp.node.left != null){
                 queue.add(new Pair(temp.node.left, temp.w - 1, temp.d + 1));
