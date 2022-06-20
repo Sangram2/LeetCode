@@ -1,0 +1,70 @@
+class Solution {
+    class pair{
+        int x;
+        int y;
+        boolean border;
+        pair(int x,int y){
+            this.x=x;
+            this.y=y;
+        }
+    }
+    static int[][]dir = {{0,1},{1,0},{0,-1},{-1,0}};
+    public int[][] colorBorder(int[][] grid, int row, int col, int color) {
+        int m=grid.length;
+        int n = grid[0].length;
+        if(m==0 || n==0){
+            return new int[m][n];
+        }
+        int oriCol=grid[row][col];
+        
+        Queue<pair> qu = new LinkedList<>();
+        ArrayList<pair> res = new ArrayList<>();
+        boolean [][]vis = new boolean[m][n];
+        pair p = new pair(row,col);
+        p.border = isBorder(grid,row,col);
+        qu.add(p);
+        
+        while(qu.size()!=0){
+            pair rem = qu.remove();
+            if(vis[rem.x][rem.y]==true){
+                continue;
+            }
+            vis[rem.x][rem.y]=true;
+            if(rem.border){
+                res.add(rem);
+            }
+            
+            for(int i=0;i<dir.length;i++){
+                int r = rem.x+dir[i][0];
+                int c = rem.y+dir[i][1];
+                
+                if(r>=0 && c>=0 && r<m && c<n && grid[r][c]==oriCol && vis[r][c]==false){
+                    pair d = new pair(r,c);
+                    d.border = isBorder(grid,r,c);
+                    qu.add(d);
+                }
+            }
+        }
+        for(pair c:res){
+            grid[c.x][c.y]=color;
+        }
+        return grid;
+    }
+    
+    public boolean isBorder(int[][] grid, int row, int col){
+        if(row==0 || row==grid.length-1 || col==0 || col==grid[0].length-1){
+            return true;
+        }
+        int yourCol = grid[row][col];
+        for(int i=0;i<dir.length;i++){
+            int r=dir[i][0]+row;
+            int c= dir[i][1]+col;
+            
+            if(grid[r][c]!=yourCol){
+                return true;
+            }
+            
+        }
+        return false;
+    }
+}
