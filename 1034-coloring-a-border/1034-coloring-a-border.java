@@ -1,3 +1,5 @@
+//BFS
+
 // class Solution {
 //     class pair{
 //         int x;
@@ -69,88 +71,130 @@
 //     }
 // }
 
-
-class Solution {
-    class Pair {
-        int i;
-        int j;
-        boolean border;
+// BFS
+// class Solution {
+//     class Pair {
+//         int i;
+//         int j;
+//         boolean border;
         
-        Pair(int i, int j){
-            this.i = i;
-            this.j = j;
-        }
-    }
+//         Pair(int i, int j){
+//             this.i = i;
+//             this.j = j;
+//         }
+//     }
     
+//     public int[][] colorBorder(int[][] grid, int row, int col, int color) {
+//         boolean[][] visited = new boolean[grid.length][grid[0].length];
+//         ArrayDeque<Pair> queue = new ArrayDeque<>();
+        
+//         Pair p = new Pair(row, col);
+//         p.border = isBorder(grid, row, col);
+//         queue.add(p);
+        
+//         ArrayList<Pair> res = new ArrayList<>();
+//         int orgc = grid[row][col];
+        
+//         while(queue.size() > 0){
+//             Pair rem = queue.remove();
+            
+//             if(visited[rem.i][rem.j]){
+//                 continue;
+//             }
+//             visited[rem.i][rem.j] = true;
+            
+//             if(rem.border){
+//                 res.add(rem);
+//             }
+            
+//             addN(grid, visited, queue, orgc, rem.i - 1, rem.j);
+//             addN(grid, visited, queue, orgc, rem.i + 1, rem.j);
+//             addN(grid, visited, queue, orgc, rem.i, rem.j - 1);
+//             addN(grid, visited, queue, orgc, rem.i, rem.j + 1);
+//         }
+        
+//         for(Pair pair: res){
+//             grid[pair.i][pair.j] = color;
+//         }
+        
+//         return grid;
+//     }
+    
+//     public void addN(int[][] grid, boolean[][] visited, ArrayDeque<Pair> queue, int orgc, int i, int j){
+//         if(i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || visited[i][j] == true || grid[i][j] != orgc){
+//             return;
+//         }
+        
+//         Pair p = new Pair(i, j);
+//         p.border = isBorder(grid, i, j);
+//         queue.add(p);
+//     }
+    
+    
+//     public boolean isBorder(int[][] grid, int i, int j){
+//         if(i == 0){
+//             return true;
+//         } else if(i == grid.length - 1){
+//             return true;
+//         } else if(j == 0){
+//             return true;
+//         } else if(j == grid[0].length - 1){
+//             return true;
+//         } else {
+//             int color = grid[i][j];
+//             if(grid[i - 1][j] != color){
+//                 return true;
+//             } else if(grid[i + 1][j] != color){
+//                 return true;
+//             } else if(grid[i][j - 1] != color){
+//                 return true;
+//             } else if(grid[i][j + 1] != color){
+//                 return true;
+//             } else {
+//                 return false;
+//             }
+//         }
+//     }
+// }
+
+
+
+
+//  DFS
+class Solution {
     public int[][] colorBorder(int[][] grid, int row, int col, int color) {
-        boolean[][] visited = new boolean[grid.length][grid[0].length];
-        ArrayDeque<Pair> queue = new ArrayDeque<>();
+        int oc = grid[row][col];
+        traverse(grid, row, col, oc);
         
-        Pair p = new Pair(row, col);
-        p.border = isBorder(grid, row, col);
-        queue.add(p);
-        
-        ArrayList<Pair> res = new ArrayList<>();
-        int orgc = grid[row][col];
-        
-        while(queue.size() > 0){
-            Pair rem = queue.remove();
-            
-            if(visited[rem.i][rem.j]){
-                continue;
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[0].length; j++){
+                if(grid[i][j] == -oc){
+                    grid[i][j] = color;
+                }
             }
-            visited[rem.i][rem.j] = true;
-            
-            if(rem.border){
-                res.add(rem);
-            }
-            
-            addN(grid, visited, queue, orgc, rem.i - 1, rem.j);
-            addN(grid, visited, queue, orgc, rem.i + 1, rem.j);
-            addN(grid, visited, queue, orgc, rem.i, rem.j - 1);
-            addN(grid, visited, queue, orgc, rem.i, rem.j + 1);
-        }
-        
-        for(Pair pair: res){
-            grid[pair.i][pair.j] = color;
         }
         
         return grid;
     }
     
-    public void addN(int[][] grid, boolean[][] visited, ArrayDeque<Pair> queue, int orgc, int i, int j){
-        if(i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || visited[i][j] == true || grid[i][j] != orgc){
+    public void traverse(int[][] grid, int i, int j, int oc){
+        if(i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] != oc){
             return;
         }
         
-        Pair p = new Pair(i, j);
-        p.border = isBorder(grid, i, j);
-        queue.add(p);
-    }
-    
-    
-    public boolean isBorder(int[][] grid, int i, int j){
-        if(i == 0){
-            return true;
-        } else if(i == grid.length - 1){
-            return true;
-        } else if(j == 0){
-            return true;
-        } else if(j == grid[0].length - 1){
-            return true;
-        } else {
-            int color = grid[i][j];
-            if(grid[i - 1][j] != color){
-                return true;
-            } else if(grid[i + 1][j] != color){
-                return true;
-            } else if(grid[i][j - 1] != color){
-                return true;
-            } else if(grid[i][j + 1] != color){
-                return true;
-            } else {
-                return false;
-            }
+        grid[i][j] = -oc;
+        
+        traverse(grid, i - 1, j, oc);
+        traverse(grid, i + 1, j, oc);
+        traverse(grid, i, j - 1, oc);
+        traverse(grid, i, j + 1, oc);
+        
+        if(i > 0 && j > 0 && i < grid.length - 1 && j < grid[0].length - 1 &&
+           Math.abs(grid[i - 1][j]) == oc &&
+           Math.abs(grid[i + 1][j]) == oc &&
+           Math.abs(grid[i][j - 1]) == oc &&
+           Math.abs(grid[i][j + 1]) == oc){
+            grid[i][j] = oc;
         }
     }
 }
