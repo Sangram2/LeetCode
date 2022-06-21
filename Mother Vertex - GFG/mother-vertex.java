@@ -30,56 +30,97 @@ class GFG
 }// } Driver Code Ends
 
 
+// My Approach
+
+// class Solution
+// {
+//     //Function to find a Mother Vertex in the Graph.
+//     public int findMotherVertex(int V, ArrayList<ArrayList<Integer>>adj)
+//     {
+//         Stack<Integer> st = new Stack<>();
+//         int []vis = new int[V];
+//         for(int v=0;v<V;v++){
+//             if(vis[v]==0){
+//                 dfs(adj,st,vis,v);
+//             }
+//         }
+//         int pmv = st.pop();
+//         dfs2(adj,vis,pmv);
+        
+//         boolean av = true;
+        
+//         for(int g : vis){
+//             if(g==1){
+//                 av=false;
+//             }
+//         }
+        
+//         if(av){
+//             return pmv;
+//         }
+//         else{
+//             return -1;
+//         }
+//     }
+    
+//     public void dfs(ArrayList<ArrayList<Integer>>adj,Stack<Integer> st,int[] vis,int v){
+//         vis[v]=1;
+//         for(int nbr : adj.get(v)){
+//             if(vis[nbr]==0){
+//                 dfs(adj,st,vis,nbr);
+//             }
+//         }
+//         st.push(v);
+//     }
+//     public void dfs2(ArrayList<ArrayList<Integer>>adj,int[] vis,int v){
+//         vis[v]=2;
+//         for(int nbr : adj.get(v)){
+//             if(vis[nbr]==1){
+//                 dfs2(adj,vis,nbr);
+//             }
+//         }
+        
+//     }
+    
+    
+// }
 
 
+//  sir ka Approach
 class Solution
 {
     //Function to find a Mother Vertex in the Graph.
     public int findMotherVertex(int V, ArrayList<ArrayList<Integer>>adj)
     {
-        Stack<Integer> st = new Stack<>();
-        int []vis = new int[V];
-        for(int v=0;v<V;v++){
-            if(vis[v]==0){
-                dfs(adj,st,vis,v);
-            }
-        }
-        int pmv = st.pop();
-        dfs2(adj,vis,pmv);
-        
-        boolean av = true;
-        
-        for(int g : vis){
-            if(g==1){
-                av=false;
+        // Code here
+        int mv = -1;
+        boolean[] vis = new boolean[V];
+        for(int v = 0; v < V; v++){
+            if(!vis[v]){
+                dfs(v, vis, adj);
+                mv = v;
             }
         }
         
-        if(av){
-            return pmv;
+        Arrays.fill(vis, false);
+        dfs(mv, vis, adj);
+        
+        for(int v = 0; v < V; v++){
+            if(vis[v] == false){
+                return -1;
+            }
         }
-        else{
-            return -1;
-        }
+        
+        return mv;
     }
     
-    public void dfs(ArrayList<ArrayList<Integer>>adj,Stack<Integer> st,int[] vis,int v){
-        vis[v]=1;
-        for(int nbr : adj.get(v)){
-            if(vis[nbr]==0){
-                dfs(adj,st,vis,nbr);
+    public void dfs(int v, boolean[] vis, ArrayList<ArrayList<Integer>> adj){
+        vis[v] = true;
+        for(int n: adj.get(v)){
+            if(!vis[n]){
+                dfs(n, vis, adj);
             }
         }
-        st.push(v);
-    }
-    public void dfs2(ArrayList<ArrayList<Integer>>adj,int[] vis,int v){
-        vis[v]=2;
-        for(int nbr : adj.get(v)){
-            if(vis[nbr]==1){
-                dfs2(adj,vis,nbr);
-            }
-        }
-        
     }
     
     
