@@ -21,10 +21,10 @@ class Solution {
                 qu.add(v);
             }
         }
-        int idx=0;
+        int idx=N-1;
         while(qu.size()!=0){
             int rem = qu.remove();
-            rtsort[idx++]=rem;
+            rtsort[idx--]=rem;
             
             for(int nbr : graph[rem]){
                 inDegree[nbr]--;
@@ -33,14 +33,10 @@ class Solution {
                 }
             }
         }
-        if(idx<N){
+        if(idx>=0){
             return new int[]{};
         }
         
-        int []ans = new int[N];
-        for(int i=0;i<N;i++){
-            ans[i]=rtsort[N-1-i];
-        }
-        return ans;
+        return rtsort;
     }
 }
