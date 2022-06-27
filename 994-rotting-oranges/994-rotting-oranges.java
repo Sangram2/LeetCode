@@ -30,7 +30,7 @@ class Solution {
         int t=-1;
         while(qu.size()!=0){
             int size=qu.size();
-            t++;
+            
             while(size-->0){
                 pair rem=qu.remove();
                 for(int []d : dir){
@@ -43,6 +43,7 @@ class Solution {
                     }
                 }
             }
+            t++;
             
         }
         return freshOranges!=0 ? -1:t;
