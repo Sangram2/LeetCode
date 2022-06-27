@@ -86,7 +86,7 @@ class Solution {
     
     public int[][] colorBorder(int[][] grid, int row, int col, int color) {
         boolean[][] visited = new boolean[grid.length][grid[0].length];
-        ArrayDeque<Pair> queue = new ArrayDeque<>();
+        Queue<Pair> queue = new LinkedList<>();
         
         Pair p = new Pair(row, col);
         p.border = isBorder(grid, row, col);
@@ -120,7 +120,7 @@ class Solution {
         return grid;
     }
     
-    public void addN(int[][] grid, boolean[][] visited, ArrayDeque<Pair> queue, int orgc, int i, int j){
+    public void addN(int[][] grid, boolean[][] visited, Queue<Pair> queue, int orgc, int i, int j){
         if(i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || visited[i][j] == true || grid[i][j] != orgc){
             return;
         }
