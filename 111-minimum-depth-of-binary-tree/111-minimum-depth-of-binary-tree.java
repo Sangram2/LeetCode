@@ -29,8 +29,11 @@ class Solution {
         if(node.left==null && node.right==null){
             ans = Math.min(ans,d);
         }
-        dfs(node.left,d+1);
-        dfs(node.right,d+1);
+        if(d+1<=ans){
+            dfs(node.left,d+1);
+            dfs(node.right,d+1); 
+        }
+        
     }
     
 }
