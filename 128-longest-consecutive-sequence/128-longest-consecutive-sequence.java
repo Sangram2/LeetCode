@@ -24,7 +24,7 @@ class Solution {
                     union(nlead,prevlead);
                 }
             }
-             nlead = find(parent.get(n));
+            nlead = find(parent.get(n));
             if(parent.containsKey(n+1)){
                 int nextlead = find(parent.get(n+1));
                 if(nlead!=nextlead){
