@@ -36,7 +36,8 @@ class Solution
 {
     public int isPossible(int[][] paths)
     {
-        
+        //here I have not checked the case when multiple components are peresent, but maybe here they have given a 
+        //a single component graph. For good practice always check if there are multiple components are present or not-> if yes the return (0 or false)
         for(int i = 0; i < paths.length; i++){
             int size = 0;
             for(int j=0;j<paths[0].length;j++){
