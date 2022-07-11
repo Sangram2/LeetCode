@@ -1,108 +1,111 @@
 class Solution {
-    int m;
-    int n;
-    
-    public int[] hitBricks(int[][] grid, int[][] hits) {
-        m = grid.length;
-        n = grid[0].length;
-        
-        parent = new int[m * n + 1];
-        rank = new int[m * n + 1];
-        size = new int[m * n + 1];
-        for(int i = 0; i < parent.length; i++){
-            parent[i] = i;
-            size[i] = 1;
-            rank[i] = 0;
-        }
-        
-        for(int[] hit: hits){
-            int x = hit[0];
-            int y = hit[1];
-            
-            if(grid[x][y] == 1){
-                grid[x][y] = 2;
-            }
-        }
-        
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(grid[i][j] == 1){
-                    handleUnionOfAllNbrs(grid, i, j);
-                }
-            }
-        }
-        
-        int[] res = new int[hits.length];
-        
-        for(int i = hits.length - 1; i >= 0; i--){
-            int x = hits[i][0];
-            int y = hits[i][1];
-            
-            if(grid[x][y] == 2){
-                int bricksIn0 = size[find(0)];
-                grid[x][y] = 1;
-                handleUnionOfAllNbrs(grid, x, y);
-                int newBricksIn0 = size[find(0)];
-                
-                if(newBricksIn0 > bricksIn0){
-                  res[i] =  newBricksIn0 - bricksIn0 - 1; 
-                } 
-            }
-        }
-        
-        return res;
-    }
-    
-    int[][] dirs = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
-    void handleUnionOfAllNbrs(int[][] grid, int i, int j){
-        int bno = i * n + j + 1;
-        
-        for(int[] dir: dirs){
-            int ni = i + dir[0];
-            int nj = j + dir[1];
-            
-            if(ni >= 0 && ni < m && nj >= 0 && nj < n && grid[ni][nj] == 1){
-                int nbno = ni * n + nj + 1;
-                union(bno, nbno);
-            }
-        }
-        
-        if(i == 0){
-            union(0, bno);
-        }
-    }
-    
-   
-    
+    int[][] dir = {{1,0},{-1,0},{0,1},{0,-1}};
     int[] parent;
     int[] rank;
     int[] size;
-    void union(int X, int Y){
-        int x = find(X);
-        int y = find(Y);
-        if(x == y){
-            return;
+    public int[] hitBricks(int[][] grid, int[][] hits) {
+        int m = grid.length;
+        int n = grid[0].length;
+        
+        parent = new int[m*n+1];
+        rank = new int[m*n+1];
+        size = new int[m*n+1];
+        for(int i=0;i<parent.length;i++){
+            parent[i] = i;
+            size[i] = 1;
         }
         
-        if(rank[x] < rank[y]){
-            parent[x] = y;
-            size[y] += size[x];
-        } else if(rank[y] < rank[x]){
-            parent[y] = x;
-            size[x] += size[y];
-        } else {
-            parent[y] = x;
-            size[x] += size[y];
-            rank[x]++;
+        for(int[] hit:hits){
+            int i=hit[0];
+            int j = hit[1];
+            if(grid[i][j] == 1){
+                grid[i][j] = 2;
+            }
         }
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                
+                if(grid[i][j] == 1){
+    
+                        handleUnion(grid,i,j);
+                   
+                }
+            }
+        }
+        int[] res = new int[hits.length];
+        int idx = hits.length-1;
+        
+        for(int k=hits.length-1;k>=0;k--){
+            int i = hits[k][0];
+            int j = hits[k][1];
+            
+            if(grid[i][j]==2){
+                grid[i][j] = 1;
+                int Size =size[find(0)];
+                handleUnion(grid,i,j);
+                int nSize = size[find(0)];
+                
+                if(nSize>Size){
+                    res[idx] = nSize-Size-1; 
+                }
+                
+                
+                
+            }
+            idx--;
+        }
+        return res;
+        
+        
+        
     }
     
+    
+    void handleUnion(int[][]grid,int i,int j){
+        int m = grid.length;
+        int n = grid[0].length;
+        for(int[]d:dir){
+            int r = i+d[0];
+            int c = j+d[1];
+
+            if(r>=0 && c>=0 && r<m && c<n && grid[r][c]==1){
+                int nBoxNo = (r*n)+c+1;
+                int boxNo = ((i*n)+j)+1;
+
+                if(find(nBoxNo)!=find(boxNo)){
+                    union(find(nBoxNo),find(boxNo));
+                }
+            }
+        }
+        if(i==0){
+            int boxNo = ((i*n)+j)+1;
+            if(find(0)!=find(boxNo))
+                union(find(0),find(boxNo));
+        }
+    }
+        
     int find(int x){
         if(parent[x] == x){
-            return parent[x];
-        } else {
-            parent[x] = find(parent[x]);
-            return parent[x];
+            return x;
+        }
+        return parent[x] = find(parent[x]);
+    }
+    
+    void union(int x,int y){
+        if(rank[x]>rank[y]){
+            parent[y] = x;
+            size[x] += size[y];
+            
+        }
+        else if(rank[x]<rank[y]){
+            parent[x] = y;
+            size[y] += size[x];
+        }
+        else{
+            parent[x] = y;
+            size[y] += size[x];
+            rank[y]++;
         }
     }
 }
