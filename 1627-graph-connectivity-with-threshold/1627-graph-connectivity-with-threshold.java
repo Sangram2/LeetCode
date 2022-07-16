@@ -7,7 +7,7 @@ class Solution {
             r[i] = 0;
         }
         
-        for(int div = threshold + 1; div <= n; div++){
+        for(int div = threshold + 1; div <= n/2; div++){
             for(int m = 2; div * m <= n; m++){
                 union(div, div * m);
             }
