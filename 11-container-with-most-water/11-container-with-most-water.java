@@ -10,10 +10,10 @@ class Solution {
             int h = Math.min(left,right);
             int area = h*diff;
             ans = Math.max(area,ans);
-            if(left<right){
+            while(height[st]<=h && st<end){
                 st++;
             }
-            else{
+            while(height[end]<=h && st<end){
                 end--;
             }
         }
