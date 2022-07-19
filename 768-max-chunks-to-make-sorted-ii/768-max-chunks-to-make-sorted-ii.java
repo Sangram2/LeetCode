@@ -5,9 +5,7 @@ class Solution {
         for(int i=arr.length-2;i>=0;i--){
             min[i] = Math.min(arr[i],min[i+1]);
         }
-        for(int ele:min){
-            System.out.println(ele+" ");
-        }
+        
         
         int ans = 0;
         int max = Integer.MIN_VALUE;        
