@@ -136,7 +136,7 @@ class Solution {
     }
     
     public boolean carPooling(int[][] trips, int capacity) {
-        int[] map = new int[1001];
+        
         PriorityQueue<Pair> pq = new PriorityQueue<>();
         
         for(int[] trip: trips){
