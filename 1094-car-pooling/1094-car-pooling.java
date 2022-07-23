@@ -79,13 +79,7 @@ class Solution {
             if(this.time != o.time){
                 return this.time - o.time;
             } else {
-                if(this.delta < 0){
-                    return -1;
-                } else if(o.delta < 0){
-                    return +1;
-                } else {
-                    return 0;
-                }
+                return this.delta-o.delta;
             }
         }
     }
