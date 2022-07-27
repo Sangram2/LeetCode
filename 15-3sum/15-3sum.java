@@ -17,12 +17,12 @@ class Solution {
 
                     }
                     else if(nums[lo]+nums[hi]>sum){
-                         while(lo<hi && nums[hi]==nums[hi-1]){hi--;}
+                         // while(lo<hi && nums[hi]==nums[hi-1]){hi--;}
                         hi--;
                         
                     }
                     else{
-                          while(lo<hi && nums[lo]==nums[lo+1]){lo++;}
+                          // while(lo<hi && nums[lo]==nums[lo+1]){lo++;}
                         lo++;
                     }
                 }
