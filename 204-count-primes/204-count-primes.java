@@ -11,7 +11,7 @@ class Solution {
                 continue;
             }
             else{
-                for(int mul=2;mul*i<n;mul++){
+                for(int mul=i;mul*i<n;mul++){
                     arr[mul*i] = true;
                 }
             }
