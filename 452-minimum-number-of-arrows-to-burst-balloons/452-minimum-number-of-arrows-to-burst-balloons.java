@@ -9,9 +9,7 @@ class Solution {
                 return -1;
             }
         });
-        for(int[]f:points){
-            System.out.println(f[0]+" "+f[1]);
-        }
+        
         int ans = 0;
         int end = 0;
         for(int i = 0;i<points.length;i++){
