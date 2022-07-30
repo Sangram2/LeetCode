@@ -23,7 +23,7 @@ class Solution {
                         ns++;
                     }
                     else{
-                        i = Math.max(itr,start);
+                        i = itr;
                         break;
                     }
                 }
