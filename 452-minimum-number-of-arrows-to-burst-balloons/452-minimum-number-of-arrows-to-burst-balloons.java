@@ -25,7 +25,7 @@ class Solution {
                }
                else{
                    ans++;
-                   end = Math.max(end,points[i][1]);
+                   end = points[i][1];
                }
                
            }
