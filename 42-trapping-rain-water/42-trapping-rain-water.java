@@ -24,25 +24,52 @@
 //     }
 // }
 
+// class Solution {
+//     public int trap(int[] height) {
+//         int[] left_arr = new int[height.length];
+//         int[] right_arr = new int[height.length];
+//         int max = -1;
+//         int ans = 0;
+//         for(int i = 0;i<height.length;i++){
+//             max=Math.max(max,height[i]);
+//             left_arr[i] = max;
+//         }
+//         max = -1;
+//         for(int i = height.length-1;i>=0;i--){
+//              max=Math.max(max,height[i]);
+//             right_arr[i] = max;
+//         }
+        
+//         for(int i = 0;i<height.length;i++){
+//             ans+= Math.min(left_arr[i],right_arr[i])-height[i];
+//         }
+//         return ans;
+//     }
+// }
 class Solution {
     public int trap(int[] height) {
-        int[] left_arr = new int[height.length];
-        int[] right_arr = new int[height.length];
-        int max = -1;
-        int ans = 0;
-        for(int i = 0;i<height.length;i++){
-            max=Math.max(max,height[i]);
-            left_arr[i] = max;
-        }
-        max = -1;
-        for(int i = height.length-1;i>=0;i--){
-             max=Math.max(max,height[i]);
-            right_arr[i] = max;
+        int[] left = new int[height.length];
+        for(int i = 0; i < left.length; i++){
+            if(i == 0){
+                left[i] = height[i];
+            } else {
+                left[i] = Math.max(height[i], left[i - 1]);
+            }
         }
         
-        for(int i = 0;i<height.length;i++){
-            ans+= Math.min(left_arr[i],right_arr[i])-height[i];
+        int[] right = new int[height.length];
+        for(int i = right.length - 1; i >= 0; i--){
+            if(i == right.length - 1){
+                right[i] = height[i];
+            } else {
+                right[i] = Math.max(height[i], right[i + 1]);
+            }
         }
-        return ans;
+        
+        int val = 0;
+        for(int i = 0; i < height.length; i++){
+            val += Math.min(left[i], right[i]) - height[i];
+        }
+        return val;
     }
 }
