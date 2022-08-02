@@ -21,7 +21,7 @@ class Solution {
         while(pq.size()!=0){
             pair p = pq.remove();
             double ctime = (target-p.pos)/(p.speed*1.0);
-            System.out.println(ctime);
+            
             if(ctime>time){
                 count++;
                 time = ctime;
