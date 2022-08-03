@@ -1,27 +1,52 @@
 class Solution {
-    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        int n=nums1.length, m=nums2.length;
-        PriorityQueue<Pair> pq=new PriorityQueue<Pair>((a,b)->((nums1[a.arr[0]]+nums2[a.arr[1]])-(nums2[b.arr[1]]+nums1[b.arr[0]])));
-        for(int i=0;i<n && i<k;i++)
-            pq.add(new Pair(i, 0));
-        while(k-->0 && !pq.isEmpty()){
-            Pair x=pq.poll();
-            List<Integer> arr=new ArrayList<>();
-            arr.add(nums1[x.arr[0]]);arr.add(nums2[x.arr[1]]);
-            res.add(arr);
-            x.arr[1]+=1;
-            if(x.arr[1]<m)
-                pq.add(new Pair(x.arr[0], x.arr[1]));
-        }
-        return res;
-    }
-}
-class Pair{
-    int[] arr;
-    public Pair(int i, int j){
-        arr=new int[2];
-        arr[0]=i;
-        arr[1]=j;
-    }
+	class triple
+	{
+		int x,y;
+		long sum;
+		triple()
+		{
+
+		}
+		triple(int x,int y,int sum)
+		{
+			this.x=x;
+			this.y=y;
+			this.sum=sum;
+		}
+
+	}
+	public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+		List<List<Integer>> list=new ArrayList<>();
+		PriorityQueue<triple> pq=new PriorityQueue<>(new Comparator<triple>(){
+			public int compare(triple t1,triple t2)
+			{
+				return (int)(t1.sum-t2.sum);
+			}
+		});
+		int n1=nums1.length,n2=nums2.length;
+		for(int i=0;i<n2;i++)
+		{
+			pq.offer(new triple(1,i+1,nums1[0]+nums2[i]));
+		}
+		while(k>0 && !pq.isEmpty())
+		{
+			// for(triple t:pq)
+			// {
+			//       System.out.println(t.x+","+t.y+","+t.sum);
+			// }
+			triple temp=pq.poll();
+			List<Integer> lst=new ArrayList<>();
+			lst.add(nums1[temp.x-1]);
+			lst.add(nums2[temp.y-1]);
+			  // System.out.println("Priority Queue ->"+temp.x+","+temp.y);
+			  // System.out.println("I am here");
+			list.add(lst);
+			k--;
+			if(temp.x<n1)
+				pq.offer(new triple(temp.x+1,temp.y,nums1[temp.x]+nums2[temp.y-1]));
+			 // System.out.println("I am here");
+		}
+		return list;
+
+	}
 }
