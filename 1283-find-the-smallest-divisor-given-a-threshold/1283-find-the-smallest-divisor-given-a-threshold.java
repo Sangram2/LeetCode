@@ -6,7 +6,7 @@ class Solution {
         }
         int lo = 1;
         int hi = sum;
-        System.out.println(hi);
+        
         int ans = Integer.MAX_VALUE;
         while(lo<=hi){
             int mid = lo+(hi-lo)/2;
