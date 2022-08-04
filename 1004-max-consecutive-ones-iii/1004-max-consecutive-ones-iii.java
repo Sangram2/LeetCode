@@ -3,8 +3,8 @@ class Solution {
         int i = 0;
         int w = 0;
         int ans = 0;
-        int j =0;
-        while(j<nums.length){
+       
+        for(int j = 0;j<nums.length;j++){
             if(nums[j]==0)
                 w++;
                 
@@ -16,7 +16,7 @@ class Solution {
             }
             ans = Math.max(ans,j-i+1);
 
-            j++;
+            
         }
       return ans;  
     }
