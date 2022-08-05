@@ -21,23 +21,3 @@ class Solution {
       return ans;  
     }
 }
-// class Solution {
-//     public int longestOnes(int[] nums, int k) {
-//         int ans = Integer.MIN_VALUE;
-        
-//         for(int i = 0;i<nums.length;i++){
-//             int count = 0;
-//             int idx = i;
-//             int l = 0;
-//             while(count<k && idx<nums.length){
-//                 if(nums[idx]==0){
-//                     count++;
-//                 }
-//                 l++;
-//                 idx++;
-//             }
-//             ans = Math.max(ans,l);
-//         }
-//         return ans;
-//     }
-// }
