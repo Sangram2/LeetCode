@@ -31,6 +31,6 @@ class Solution {
             }
         }
         
-        return nums[hi];
+        return nums[hi];//return nums[lo]-> will also work here.
     }
 }
