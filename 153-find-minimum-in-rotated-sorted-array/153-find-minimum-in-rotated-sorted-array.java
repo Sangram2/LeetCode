@@ -31,6 +31,6 @@ class Solution {
             }
         }
         
-        return nums[lo];
+        return nums[hi];
     }
 }
