@@ -17,7 +17,7 @@ class Solution {
                 rej += 1L*h*(h-1)/2;
             }
         }
-       System.out.print(rej);
+ 
         return count-rej;
         
         
