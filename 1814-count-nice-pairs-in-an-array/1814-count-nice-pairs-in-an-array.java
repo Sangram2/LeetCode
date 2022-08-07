@@ -1,8 +1,6 @@
 class Solution {
     public int rev(int n){
-        while(n>0 && n%10==0){
-                n/=10;
-        }
+        
         int ans= 0;
         while(n>0){
             int rem = n%10;
