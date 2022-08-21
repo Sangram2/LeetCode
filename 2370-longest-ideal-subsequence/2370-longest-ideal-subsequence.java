@@ -18,7 +18,7 @@ class Solution {
                 int li = len[pos];
                 max = Math.max(max,li);
             }
-            // System.out.println(max);
+            
             len[ch-'a'] = max+1;
             
         }
