@@ -1,61 +1,54 @@
 class Solution {
     public int[] movesToStamp(String stamp, String target) {
-        List<Integer> reverseIndexList = new ArrayList<>();
-        int len = target.length();
+        List<Integer> reverseList = new ArrayList<>();
+        char[] targetStr = new char[target.length()];
         char[] curr = target.toCharArray();
-        char[] targetStr = new char[len];
-        Arrays.fill(targetStr, '*');
-
-        while(!Arrays.equals(curr, targetStr)){
-            int stampIndex = fetchStampIndex(curr, stamp);
-            // System.out.println(stampIndex);
-            if(stampIndex<0){
+        Arrays.fill(targetStr,'*');
+        
+        while(!Arrays.equals(curr,targetStr)){
+            int stampIdx = getStIdx(curr,stamp);
+            if(stampIdx<0){
                 return new int[0];
-            } else {
-                update(curr, stampIndex, stamp);
             }
-            reverseIndexList.add(stampIndex);
+            else{
+                update(curr,stamp,stampIdx);
+            }
+            
+            reverseList.add(stampIdx);
         }
-
-        int[] ans = new int[reverseIndexList.size()];
-
-        for(int i=0;i<reverseIndexList.size();i++){
-            ans[i] = reverseIndexList.get(reverseIndexList.size()-1-i);
+        
+        int[] ans = new int[reverseList.size()];
+        int idx = 0;
+        for(int i = ans.length-1;i>=0;i--){
+            ans[idx++] = reverseList.get(i);
         }
         return ans;
+        
+        
     }
-
-    private int fetchStampIndex(char[] curr, String stamp){
-        // System.out.println( new String(curr));
-
-        for(int i=0;i<=curr.length - stamp.length();i++){
-            int j=0;
+    
+    int getStIdx(char[] curr,String stamp){
+        for(int i = 0;i<=curr.length-stamp.length();i++){
+            int j = 0;
             int s = i;
-            boolean isNonStarChar = false;
-
-            while(j<stamp.length() && s<curr.length && (curr[s] == '*' || (curr[s] == stamp.charAt(j)))) {
-                if(curr[s] !='*'){
-                    isNonStarChar = true; /// ******** , ab
+            boolean nA = false;
+            while(j<stamp.length() && s<curr.length && (curr[s] == stamp.charAt(j) || curr[s]=='*')){
+                if(curr[s] != '*'){
+                    nA = true;
                 }
-                s++;
                 j++;
-
-
+                s++;
             }
-
-            if(j == stamp.length() && isNonStarChar){
-                return i;
+            if(j==stamp.length() && nA){
+                return  i;
             }
         }
         return -1;
     }
-
-    private void update(char[] curr, int i, String stamp){
-        for(int j=0;j<stamp.length();j++){
-            curr[j+i] = '*';
+    
+    void update(char[] curr,String stamp,int idx){
+        for(int i = 0;i<stamp.length();i++){
+            curr[idx+i] = '*'; 
         }
     }
-
-
-
 }
