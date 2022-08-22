@@ -8,7 +8,7 @@ class Solution {
 
         while(!Arrays.equals(curr, targetStr)){
             int stampIndex = fetchStampIndex(curr, stamp);
-            System.out.println(stampIndex);
+            // System.out.println(stampIndex);
             if(stampIndex<0){
                 return new int[0];
             } else {
