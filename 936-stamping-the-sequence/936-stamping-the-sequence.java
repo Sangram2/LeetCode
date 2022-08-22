@@ -26,7 +26,7 @@ class Solution {
     }
 
     private int fetchStampIndex(char[] curr, String stamp){
-        System.out.println( new String(curr));
+        // System.out.println( new String(curr));
 
         for(int i=0;i<=curr.length - stamp.length();i++){
             int j=0;
