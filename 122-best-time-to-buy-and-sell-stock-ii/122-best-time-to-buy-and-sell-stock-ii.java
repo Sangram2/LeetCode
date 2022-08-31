@@ -11,7 +11,7 @@ class Solution {
             ans += stocks[s]-stocks[b];
             b= s;
             while(i < stocks.length-1 && stocks[i]>stocks[i+1]){
-                b=s;
+                // b=s;
                 b++;
                 s++;
                 i++;
