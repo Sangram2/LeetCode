@@ -2,8 +2,7 @@ class Solution {
     public boolean backspaceCompare(String s, String t) {
         String s1 = process(s);
         String s2 = process(t);
-        System.out.println(s1);
-        System.out.println(s2);
+       
         if(s1.equals(s2)){
             return true;
         }
