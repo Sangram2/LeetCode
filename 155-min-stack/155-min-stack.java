@@ -19,11 +19,12 @@ class MinStack {
     }
     
     public void pop() {
-        if(!data.peek().equals(min.peek())){
-            data.pop();
-        } else {
+        if(data.peek().equals(min.peek())){
             data.pop();
             min.pop();
+        }
+        else{
+            data.pop();
         }
     }
     
