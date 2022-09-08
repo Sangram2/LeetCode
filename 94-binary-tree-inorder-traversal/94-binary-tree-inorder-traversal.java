@@ -27,7 +27,7 @@ class Solution {
                 curr=curr.right;
             }
             else{
-                TreeNode iop=curr.left;
+                TreeNode iop = curr.left;
                 while((iop.right!=null) && (iop.right!=curr)){
                     iop=iop.right;
                 }
