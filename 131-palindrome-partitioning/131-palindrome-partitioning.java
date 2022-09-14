@@ -32,7 +32,7 @@ class Solution {
         } 
         
         if(dp[j] != null){
-            return (List<List<String>>)dp[j];
+            return dp[j];
         }
       
         
