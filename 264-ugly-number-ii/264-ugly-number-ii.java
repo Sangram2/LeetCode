@@ -38,8 +38,7 @@ class Solution {
             int a = 2*dp[i];
             int b = 3*dp[j];
             int c = 5*dp[k];
-            int m = Math.min(a,Math.min(b,c));
-            
+            int m = Math.min(a,Math.min(b,c)); 
             dp[idx] = m;
             if(2*dp[i] == m){
                 i++;
@@ -52,7 +51,6 @@ class Solution {
             }
             idx++;
         }
-        
         return dp[n];
         
         
