@@ -1,10 +1,14 @@
 class Solution {
     public int concatenatedBinary(int n) {
-        int MOD = 1_000_000_007;
-        long sum = 0;
-        for (int i = 1; i <= n; i++)
-            sum = (sum * (int)Math.pow(2, Integer.toBinaryString(i).length()) + i) % MOD; // sum = ((sum << Integer.toBinaryString(i).length()) + i) % MOD;
-
-        return (int)sum;
+        int ans = 0;
+        int mod = (int)1e9+7;
+        for(int i = 1;i<=n;i++){
+            String br = Integer.toBinaryString(i);
+            for(char c:br.toCharArray()){
+                int val = (c=='0') ? 0:1;
+                ans = ((ans*2)%mod+val)%mod;
+            }
+        }
+        return ans;
     }
 }
