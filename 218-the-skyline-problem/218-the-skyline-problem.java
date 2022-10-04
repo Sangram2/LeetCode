@@ -1,31 +1,34 @@
-
 class Solution {
     public List<List<Integer>> getSkyline(int[][] buildings) {
-        List<List<Integer>> list = new ArrayList<>();
-        
-        List<int[]> lines = new ArrayList<>();
-        for (int[] building: buildings) {
-            lines.add(new int[] {building[0], building[2]});
-            lines.add(new int[] {building[1], -building[2]});
+        List<List<Integer>> result = new ArrayList<>();
+        List<int[]> height = new ArrayList<>();
+        for(int[] b:buildings) {
+            height.add(new int[]{b[0], -b[2]});
+            height.add(new int[]{b[1], b[2]});
         }
-        Collections.sort(lines, (a, b)->a[0]==b[0]?b[1]-a[1]:a[0]-b[0]);
-        TreeMap<Integer, Integer> map = new TreeMap<>();
-        map.put(0, 1);
-        int prev=0;
-        for (int[] line: lines) {
-            if (line[1]>0) {
-                map.put(line[1], map.getOrDefault(line[1], 0)+1);
+        Collections.sort(height, (a, b) -> {
+                if(a[0] != b[0]) 
+                    return a[0] - b[0];
+                return a[1] - b[1];
+        });
+        Queue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
+        pq.offer(0);
+        int prev = 0;
+        for(int[] h:height) {
+            if(h[1] < 0) {
+                pq.offer(-h[1]);
             } else {
-                int f = map.get(-line[1]);
-                if (f==1) map.remove(-line[1]);
-                else map.put(-line[1], f-1);
+                pq.remove(h[1]);
             }
-            int curr = map.lastKey();
-            if (curr!=prev) {
-                list.add(Arrays.asList(line[0], curr));
-                prev=curr;
+            int cur = pq.peek();
+            if(prev != cur) {
+                List<Integer> li = new ArrayList<>();
+                li.add(h[0]);
+                li.add(cur);
+                result.add(li);
+                prev = cur;
             }
         }
-        return list;
+        return result;
     }
 }
