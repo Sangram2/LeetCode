@@ -13,18 +13,44 @@
  *     }
  * }
  */
-public class Solution {
-    public TreeNode addOneRow(TreeNode root, int v, int d) {
-        if (d == 0 || d == 1) {
-            TreeNode newroot = new TreeNode(v);
-            newroot.left = d == 1 ? root : null;
-            newroot.right = d == 0 ? root : null;
-            return newroot;
+class Solution {
+    public TreeNode addOneRow(TreeNode root, int val, int depth) {
+        if(depth == 1){
+            TreeNode node = new TreeNode(val);
+            node.left = root;
+            return node;
         }
-        if (root != null && d >= 2) {
-            root.left  = addOneRow(root.left,  v, d > 2 ? d - 1 : 1);
-            root.right = addOneRow(root.right, v, d > 2 ? d - 1 : 0);
-        }
+        
+        dfs(root,1,depth,val);
         return root;
+    }
+    
+    void dfs(TreeNode node,int cd,int depth,int val){
+        if(node == null){
+            return;
+        }
+        if(cd == depth-1){
+            TreeNode l = null;
+            if(node.left!=null){
+                l = node.left;
+                
+            }
+            TreeNode k1 = new TreeNode(val);
+            node.left = k1;
+            k1.left = l;
+            
+            TreeNode r = null;
+            
+            if(node.right!=null){
+                r = node.right;
+                
+            }
+            TreeNode k2 = new TreeNode(val);
+            node.right = k2;
+            k2.right = r;
+        }
+        dfs(node.left,cd+1,depth,val);
+        dfs(node.right,cd+1,depth,val);
+        
     }
 }
