@@ -30,21 +30,12 @@ class Solution {
             return;
         }
         if(cd == depth-1){
-            TreeNode l = null;
-            if(node.left!=null){
-                l = node.left;
-                
-            }
+
+            TreeNode l = node.left; 
             TreeNode k1 = new TreeNode(val);
             node.left = k1;
             k1.left = l;
-            
-            TreeNode r = null;
-            
-            if(node.right!=null){
-                r = node.right;
-                
-            }
+            TreeNode r = node.right;
             TreeNode k2 = new TreeNode(val);
             node.right = k2;
             k2.right = r;
